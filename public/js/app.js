@@ -2097,7 +2097,48 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      isAuthenticated: false,
+      username: ''
+    };
+  },
+  watch: {
+    $route: function $route() {
+      //Token
+      if (localStorage.getItem('token')) this.isAuthenticated = true;else {
+        this.isAuthenticated = false;
+        this.$router.push({
+          name: 'login'
+        });
+      }
+      if (localStorage.getItem('username')) this.username = localStorage.getItem('username');else this.username = '';
+    }
+  },
+  methods: {
+    logout: function logout() {
+      var _this = this;
+
+      axios.defaults.headers.common = {
+        Authorization: "Bearer " + localStorage.getItem("token")
+      };
+      axios.post('/api/logout').then(function () {
+        localStorage.removeItem('token');
+        localStorage.removeItem('username');
+
+        _this.$router.push({
+          name: 'login'
+        });
+      });
+    }
+  }
+});
 
 /***/ }),
 
@@ -2207,6 +2248,14 @@ var Editar = function Editar() {
   return __webpack_require__.e(/*! import() */ "resources_js_compoments_blog_Editar_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./compoments/blog/Editar.vue */ "./resources/js/compoments/blog/Editar.vue"));
 };
 
+var Login = function Login() {
+  return __webpack_require__.e(/*! import() */ "resources_js_compoments_Login_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./compoments/Login.vue */ "./resources/js/compoments/Login.vue"));
+};
+
+var Registre = function Registre() {
+  return __webpack_require__.e(/*! import() */ "resources_js_compoments_Registre_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./compoments/Registre.vue */ "./resources/js/compoments/Registre.vue"));
+};
+
 var routes = [{
   name: 'home',
   path: '/',
@@ -2227,6 +2276,14 @@ var routes = [{
   name: 'contacto',
   path: '/contacto',
   component: Contacto
+}, {
+  name: 'login',
+  path: '/login',
+  component: Login
+}, {
+  name: 'Registre',
+  path: '/registre',
+  component: Registre
 }];
 
 /***/ }),
@@ -19771,61 +19828,90 @@ var render = function() {
               attrs: { id: "navbarSupportedContent" }
             },
             [
-              _c("ul", { staticClass: "navbar-nav me-auto mb-2 mb-lg-0" }, [
-                _c(
-                  "li",
-                  { staticClass: "nav-item" },
-                  [
-                    _c(
-                      "router-link",
-                      {
-                        staticClass: "nav-link active",
-                        attrs: {
-                          "exact-active-class": "active",
-                          to: "/",
-                          "aria-current": "page"
-                        }
-                      },
-                      [_vm._v("Inicio")]
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  { staticClass: "nav-item" },
-                  [
-                    _c(
-                      "router-link",
-                      {
-                        staticClass: "nav-link",
-                        attrs: { "exact-active-class": "active", to: "/blogs" }
-                      },
-                      [_vm._v("Blogs")]
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  { staticClass: "nav-item" },
-                  [
-                    _c(
-                      "router-link",
-                      {
-                        staticClass: "nav-link",
-                        attrs: {
-                          "exact-active-class": "active",
-                          to: "/contacto"
-                        }
-                      },
-                      [_vm._v("Contacto")]
-                    )
-                  ],
-                  1
-                )
+              _c(
+                "ul",
+                { staticClass: "navbar-nav me-auto mb-2 mb-lg-0" },
+                [
+                  !_vm.isAuthenticated
+                    ? _c(
+                        "li",
+                        { staticClass: "nav-item" },
+                        [
+                          _c(
+                            "router-link",
+                            {
+                              staticClass: "nav-link",
+                              attrs: {
+                                "exact-active-class": "active",
+                                to: "/login"
+                              }
+                            },
+                            [_vm._v("Login")]
+                          )
+                        ],
+                        1
+                      )
+                    : [
+                        _c(
+                          "li",
+                          { staticClass: "nav-item" },
+                          [
+                            _c(
+                              "router-link",
+                              {
+                                staticClass: "nav-link active",
+                                attrs: {
+                                  "exact-active-class": "active",
+                                  to: "/",
+                                  "aria-current": "page"
+                                }
+                              },
+                              [_vm._v("Inicio")]
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "li",
+                          { staticClass: "nav-item" },
+                          [
+                            _c(
+                              "router-link",
+                              {
+                                staticClass: "nav-link",
+                                attrs: {
+                                  "exact-active-class": "active",
+                                  to: "/contacto"
+                                }
+                              },
+                              [_vm._v("Contacto")]
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "li",
+                          {
+                            staticClass: "nav-item",
+                            on: { click: _vm.logout }
+                          },
+                          [
+                            _c(
+                              "a",
+                              { staticClass: "nav-link", attrs: { href: "#" } },
+                              [_vm._v("Logout")]
+                            )
+                          ]
+                        )
+                      ]
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _c("span", { staticClass: "navbar-text" }, [
+                _vm._v(_vm._s(_vm.username))
               ])
             ]
           )
@@ -35303,7 +35389,7 @@ module.exports = JSON.parse('{"_from":"axios@^0.21","_id":"axios@0.21.4","_inBun
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_compoments_Home_vue":1,"resources_js_compoments_Contacto_vue":1,"resources_js_compoments_blog_Mostrar_vue":1,"resources_js_compoments_blog_Crear_vue":1,"resources_js_compoments_blog_Editar_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_compoments_Home_vue":1,"resources_js_compoments_Contacto_vue":1,"resources_js_compoments_blog_Mostrar_vue":1,"resources_js_compoments_blog_Crear_vue":1,"resources_js_compoments_blog_Editar_vue":1,"resources_js_compoments_Login_vue":1,"resources_js_compoments_Registre_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

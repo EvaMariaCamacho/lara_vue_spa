@@ -7,6 +7,9 @@ const Mostrar = () => import('./compoments/blog/Mostrar.vue')
 const Crear = () => import('./compoments/blog/Crear.vue')
 const Editar = () => import('./compoments/blog/Editar.vue')
 
+const Login = () => import('./compoments/Login.vue')
+const Registre = () => import('./compoments/Registre.vue')
+
 export const routes = [
     {
         name: 'home',
@@ -32,5 +35,15 @@ export const routes = [
         name: 'contacto',
         path: '/contacto',
         component: Contacto
+    },
+    {
+        name: 'login',
+        path: '/login',
+        component: Login
+    },
+    {
+        name: 'Registre',
+        path: '/registre',
+        component: Registre
     }
 ]

@@ -47,6 +47,9 @@ export default {
     },
     methods:{
         async mostrarBlogs(){
+            axios.defaults.headers.common = {
+            Authorization: "Bearer " + localStorage.getItem("token")
+            };
             await this.axios.get('/api/blog').then(response=>{
                 this.blogs = response.data
             }).catch(error=>{

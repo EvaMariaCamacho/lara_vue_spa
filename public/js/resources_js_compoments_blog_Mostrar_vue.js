@@ -85,7 +85,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.next = 2;
+                axios.defaults.headers.common = {
+                  Authorization: "Bearer " + localStorage.getItem("token")
+                };
+                _context.next = 3;
                 return _this.axios.get('/api/blog').then(function (response) {
                   _this.blogs = response.data;
                 })["catch"](function (error) {
@@ -93,7 +96,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this.blogs = [];
                 });
 
-              case 2:
+              case 3:
               case "end":
                 return _context.stop();
             }

@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +16,17 @@ use App\Http\Controllers\BlogController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {return $request->user();});
+//Route::middleware('auth:sanctum')->get('/user', function (Request $request) {return $request->user();});
 
-Route::resource('blog', App\Http\Controllers\BlogController::class)->only(['index', 'store', 'update', 'show', 'destroy']);
+
+
+
+//Route::post('register', [AuthController::class, 'registre']);
+Route::post('login', [AuthController::class, 'login']);
+
+Route::middleware('jwt.auth')->group(function() {
+   Route::resource('blog', App\Http\Controllers\BlogController::class)->only(['index', 'store', 'update', 'show', 'destroy']);
+   Route::post('logout', [AuthController::class, 'logout']);
+});
+
+
