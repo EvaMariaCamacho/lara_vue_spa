@@ -2102,6 +2102,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -2252,8 +2256,8 @@ var Login = function Login() {
   return __webpack_require__.e(/*! import() */ "resources_js_compoments_Login_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./compoments/Login.vue */ "./resources/js/compoments/Login.vue"));
 };
 
-var Registre = function Registre() {
-  return __webpack_require__.e(/*! import() */ "resources_js_compoments_Registre_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./compoments/Registre.vue */ "./resources/js/compoments/Registre.vue"));
+var Register = function Register() {
+  return __webpack_require__.e(/*! import() */ "resources_js_compoments_Register_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./compoments/Register.vue */ "./resources/js/compoments/Register.vue"));
 };
 
 var routes = [{
@@ -2281,9 +2285,9 @@ var routes = [{
   path: '/login',
   component: Login
 }, {
-  name: 'Registre',
-  path: '/registre',
-  component: Registre
+  name: 'register',
+  path: '/register',
+  component: Register
 }];
 
 /***/ }),
@@ -19843,6 +19847,27 @@ var render = function() {
                               staticClass: "nav-link",
                               attrs: {
                                 "exact-active-class": "active",
+                                to: "/register"
+                              }
+                            },
+                            [_vm._v("Register")]
+                          )
+                        ],
+                        1
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  !_vm.isAuthenticated
+                    ? _c(
+                        "li",
+                        { staticClass: "nav-item" },
+                        [
+                          _c(
+                            "router-link",
+                            {
+                              staticClass: "nav-link",
+                              attrs: {
+                                "exact-active-class": "active",
                                 to: "/login"
                               }
                             },
@@ -35389,7 +35414,7 @@ module.exports = JSON.parse('{"_from":"axios@^0.21","_id":"axios@0.21.4","_inBun
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_compoments_Home_vue":1,"resources_js_compoments_Contacto_vue":1,"resources_js_compoments_blog_Mostrar_vue":1,"resources_js_compoments_blog_Crear_vue":1,"resources_js_compoments_blog_Editar_vue":1,"resources_js_compoments_Login_vue":1,"resources_js_compoments_Registre_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_compoments_Home_vue":1,"resources_js_compoments_Contacto_vue":1,"resources_js_compoments_blog_Mostrar_vue":1,"resources_js_compoments_blog_Crear_vue":1,"resources_js_compoments_blog_Editar_vue":1,"resources_js_compoments_Login_vue":1,"resources_js_compoments_Register_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

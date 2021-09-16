@@ -8,7 +8,7 @@ const Crear = () => import('./compoments/blog/Crear.vue')
 const Editar = () => import('./compoments/blog/Editar.vue')
 
 const Login = () => import('./compoments/Login.vue')
-const Registre = () => import('./compoments/Registre.vue')
+const Register = () => import('./compoments/Register.vue')
 
 export const routes = [
     {
@@ -42,8 +42,8 @@ export const routes = [
         component: Login
     },
     {
-        name: 'Registre',
-        path: '/registre',
-        component: Registre
-    }
+        name: 'register',
+        path: '/register',
+        component: Register
+    },
 ]

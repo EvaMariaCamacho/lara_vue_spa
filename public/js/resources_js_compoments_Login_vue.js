@@ -26,10 +26,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -190,7 +186,7 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "form-group" }, [
+      _c("div", { staticClass: "form-group pb-5" }, [
         _c("label", { attrs: { for: "password" } }, [_vm._v("Password")]),
         _vm._v(" "),
         _c("input", {
@@ -214,55 +210,6 @@ var render = function() {
             }
           }
         })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-check" }, [
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.user.remember,
-              expression: "user.remember"
-            }
-          ],
-          staticClass: "form-check-input",
-          attrs: { type: "checkbox", id: "remember" },
-          domProps: {
-            checked: Array.isArray(_vm.user.remember)
-              ? _vm._i(_vm.user.remember, null) > -1
-              : _vm.user.remember
-          },
-          on: {
-            change: function($event) {
-              var $$a = _vm.user.remember,
-                $$el = $event.target,
-                $$c = $$el.checked ? true : false
-              if (Array.isArray($$a)) {
-                var $$v = null,
-                  $$i = _vm._i($$a, $$v)
-                if ($$el.checked) {
-                  $$i < 0 && _vm.$set(_vm.user, "remember", $$a.concat([$$v]))
-                } else {
-                  $$i > -1 &&
-                    _vm.$set(
-                      _vm.user,
-                      "remember",
-                      $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                    )
-                }
-              } else {
-                _vm.$set(_vm.user, "remember", $$c)
-              }
-            }
-          }
-        }),
-        _vm._v(" "),
-        _c(
-          "label",
-          { staticClass: "form-check-label", attrs: { for: "remember" } },
-          [_vm._v("Check me out")]
-        )
       ]),
       _vm._v(" "),
       _c(
